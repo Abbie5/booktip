@@ -5,6 +5,10 @@
 	"mixins": [
 		"ExampleMixin"
 	],
+	"client": [
+		"client.ExampleClientMixin",
+		"client.EnchantmentHelperMixin"
+	],
 	"injectors": {
 		"defaultRequire": 1
 	}

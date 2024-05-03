@@ -11,8 +11,7 @@
 		"homepage": "https://fabricmc.net/",
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
-	"license": "CC0-1.0",
-	"icon": "assets/modid/icon.png",
+	"license": "LGPL-3.0-only",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
@@ -23,17 +22,12 @@
 		]
 	},
 	"mixins": [
-		"modid.mixins.json",
-		{
-			"config": "modid.client.mixins.json",
-			"environment": "client"
-		}
+		"modid.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.15.10",
-		"minecraft": "~1.20.6",
-		"java": ">=21",
-		"fabric-api": "*"
+		"minecraft": "1.20.5-alpha.24.18.a",
+		"java": ">=21"
 	},
 	"suggests": {
 		"another-mod": "*"
