@@ -16,7 +16,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
-import net.minecraft.world.item.enchantment.ItemEnchantments;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -38,9 +37,9 @@ public abstract class ItemStackMixin implements DataComponentHolder {
             shift = At.Shift.AFTER
     ))
     private void addEnchantedBookTooltip(Consumer<Component> consumer, @Nullable Player player, CallbackInfo ci, @Local EquipmentSlotGroup equipmentSlotGroup, @Local MutableBoolean mutableBoolean) {
-        if (!this.is(Items.ENCHANTED_BOOK)) return;
+        if (!this.is(Items.ENCHANTED_BOOK) || !this.has(DataComponents.STORED_ENCHANTMENTS)) return;
 
-        this.getOrDefault(DataComponents.STORED_ENCHANTMENTS, ItemEnchantments.EMPTY).entrySet().forEach(entry -> {
+        this.get(DataComponents.STORED_ENCHANTMENTS).entrySet().forEach(entry -> {
             Enchantment enchantment = entry.getKey().value();
             enchantment.getEffects(EnchantmentEffectComponents.ATTRIBUTES).forEach(effect -> {
                 if (enchantment.definition().slots().contains(equipmentSlotGroup)) {
